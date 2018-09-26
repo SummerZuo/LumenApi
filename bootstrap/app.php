@@ -78,7 +78,8 @@ $app->singleton(
 |
 */
 // dingo api
-//$app->register()
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
@@ -97,6 +98,7 @@ $app->singleton(
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
+    require __DIR__.'/../routes/api/v1.php';
     require __DIR__.'/../routes/web.php';
 });
 
