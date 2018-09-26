@@ -33,6 +33,6 @@ class User extends BaseModel implements AuthenticatableContract, JWTSubject
 
     public function validateEmail($email)
     {
-        Validator::
+        return true;
     }
 }

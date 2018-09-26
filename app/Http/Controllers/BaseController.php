@@ -9,7 +9,9 @@
 namespace App\Http\Controllers;
 
 
+use Dingo\Api\Routing\Helpers;
+
 class BaseController
 {
-
+    use Helpers;
 }

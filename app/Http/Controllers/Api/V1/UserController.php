@@ -8,10 +8,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-
 use App\Http\Controllers\BaseController;
 use App\Models\User;
-use App\Service\UserService;
+use App\Transformers\UserTransformer;
 use Dingo\Api\Http\Request;
 
 
@@ -24,7 +23,8 @@ class UserController extends BaseController
      */
     public function index()
     {
-        return User::all();
+        $users = User::all();
+        return $this->response->collection($users, new UserTransformer());
     }
 
     /**
@@ -34,6 +34,17 @@ class UserController extends BaseController
      */
     public function add(Request $request)
     {
-        UserService::addUser($request->all());
+        $input = $request->input();
+        $attritubes = [
+            'email' => $input['email'],
+            'name' => $input['name'],
+            'password' => app('hash')->make($input['password'])
+        ];
+
+        $model = new User();
+        $model->fill($attritubes)->save();
+
+        return $this->response->item($model, new UserTransformer())
+                    ->setStatusCode(201);
     }
 }
