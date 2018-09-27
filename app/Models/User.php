@@ -1,11 +1,12 @@
 <?php
 namespace App\Models;
+
 use Dingo\Blueprint\Annotation\Method\Post;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Validation\Validator;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
 class User extends BaseModel implements AuthenticatableContract, JWTSubject
 {
     // 软删除和用户验证attempt

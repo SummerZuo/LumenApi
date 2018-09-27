@@ -44,7 +44,19 @@ class UserController extends BaseController
         $model = new User();
         $model->fill($attritubes)->save();
 
+
         return $this->response->item($model, new UserTransformer())
                     ->setStatusCode(201);
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if (empty($user)) {
+            return $this->response->errorNotFound('user not found');
+        }
+
+        return $this->response->item($user, new UserTransformer());
     }
 }

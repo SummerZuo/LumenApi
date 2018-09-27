@@ -49,7 +49,10 @@ return $this->response->item($user, new UserTransformer())
 
 #### 3.1 创建Transformer文件
 
-​	根据model来定义transformer，transformer中需要实现`transform（）`方法
+​	根据model来定义transformer，transformer中需要实现   `transform（）`方法
 
-### 4. 生成API文档
 
+
+### 4. 生成API文档(apidoc)
+
+​	可根据代码注释生成文档，若注释发生变化，可重新生成。
